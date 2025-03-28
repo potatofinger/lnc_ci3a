@@ -3,42 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library Management System</title>
-
-    <link rel="stylesheet" href="<?= base_url('assets/css/dataTables.min.css'); ?>">
-    <script src="<?= base_url('assets/js/jquery-3.7.1.min.js'); ?>"></script>
-    <script src="<?= base_url('assets/js/dataTables.min.js'); ?>"></script>
+    <title>Document</title>
 </head>
 <body>
     <h2>Library Management System</h2>
     <h3>Book List</h3>
-    <table id="booktable" class="display">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>TITLE</th>
-                <th>AUTHOR</th>
-                <th>YEAR</th>
-                <th>STATUS</th>
-            </tr>
-        </thead>
+    <br>
+<h3>Add Book</h3>
+<form action="<?=site_url('library/add')?>" method ="post">
+    <input type="text" name="title" placeholder="Title" required>
+    <input type="text" name="author" placeholder="Author" required>
+    <input type="text" name="published_year" placeholder="Year" required>
+    <button type="submit">Add</button>
+</form>   
+<br>
+<br>
+ <table border="1">
+        <thead><tr>
+            <th>ID</th>
+            <th>TITLE</th>
+            <th>AUTHOR</th>
+            <th>YEAR</th>
+            <th>STATUS</th>
+            <th>ACTION</th>
+        </tr></thead>
+
         <tbody>
             <?php foreach ($books as $book) { ?>
-                <tr>
-                    <td><?= $book['id']; ?></td>
-                    <td><?= $book['title']; ?></td>
-                    <td><?= $book['author']; ?></td>
-                    <td><?= $book['published_year']; ?></td>
-                    <td><?= $book['status']; ?></td>
-                </tr>
-            <?php } ?>
+            <tr>
+                <td><?= $book['id']; ?></td>
+                <td><?= $book['title']; ?></td>
+                <td><?= $book['author']; ?></td>
+                <td><?= $book['published_year']; ?></td>
+                <td><?= $book['status']; ?></td>
+                <td> 
+                    <?php if ($book['status'] == 'Available'){ ?>
+                    <a href="<?= site_url('library/borrow/' .$book['id']) ?>">Borrow</a>
+                    <?php } else {?>
+                    <a href="<?=site_url('library/return_book/' .$book['id']) ?>">Return</a>
+                <?php } ?>
+                    </td>
+                <td><a href="<?= site_url('library/delete/' . $book['id']) ?>">Delete</a></td>
+            </tr>
+        <?php } ?>
         </tbody>
     </table>
-
-    <script>
-        $(document).ready(function(){
-            $('#booktable').DataTable(); 
-        });
-    </script>
 </body>
+
 </html>
