@@ -55,5 +55,14 @@ $route['auth/login'] = 'auth/login';
 $route['auth/register'] = 'auth/register';
 $route['auth/logout'] = 'auth/logout';
 
+$route['library'] = 'library/index';
+$route['library/borrow/(:num)'] = 'library/borrow/$1';
+$route['library/return_book/(:num)'] = 'library/return_book/$1';
+$route['library/delete/(:num)'] = 'library/delete/$1';
+
+$route['library/transactions'] = 'library/view_transactions'; 
+
+
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

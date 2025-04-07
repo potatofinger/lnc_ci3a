@@ -1,21 +1,47 @@
-    
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <h2>Login to Library Management System</h2>
-    <form action="<?= site_url('auth/process_login') ?>" method="POST">
-        <label for="email">Email:</label>
-        <input type="email" name="email" required><br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" required><br>
-        <button type="submit">Login</button>
-    </form>
-    <p><a href="<?= site_url('main/register') ?>">Don't have an account? Register here.</a></p>
+<body class="bg-light">
+
+    <!-- Container for the form -->
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="row w-100">
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow-lg border-0">
+                    <div class="card-body p-4">
+                        <h4 class="card-title text-center mb-4">Login to Library Management System</h4>
+                        <form action="<?= site_url('auth/process_login') ?>" method="POST">
+                            <!-- Email input -->
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" name="email" id="email" required>
+                            </div>
+                            <!-- Password input -->
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control" name="password" id="password" required>
+                            </div>
+                            <!-- Login button -->
+                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        </form>
+                        <p class="mt-3 text-center">
+                            <a href="<?= site_url('auth/register') ?>">Don't have an account? Register here.</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-

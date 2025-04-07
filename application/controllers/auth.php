@@ -31,6 +31,7 @@ class auth extends CI_Controller {
 
     public function logout() {
         $this->session->unset_userdata('user_id');
+        $this->session->set_flashdata('message', 'You have successfully logged out.');
         redirect('auth/login');
     }
 
@@ -55,9 +56,7 @@ class auth extends CI_Controller {
                 'email' => $this->input->post('email'),
                 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT)
             );
-
             $this->User_model->register_user($data);
-            $this->session->set_flashdata('success', 'Registration successful! You can now login.');
             redirect('auth/login');
     }
 }
